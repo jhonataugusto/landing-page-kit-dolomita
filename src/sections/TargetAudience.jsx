@@ -52,7 +52,7 @@ export default function TargetAudience() {
                 marginTop: 'var(--spacing-2xl)',
                 textAlign: 'center'
             }}>
-                <CTAButton href="#comprar">
+                <CTAButton href="/oferta">
                     Sim, Este Kit É Para Mim
                 </CTAButton>
             </div>

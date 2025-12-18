@@ -89,7 +89,7 @@ export default function Hero() {
                     </div>
                 </div>
 
-                <CTAButton href="#comprar">
+                <CTAButton href="/oferta">
                     Sim, Quero Minha Pele de Volta Agora
                 </CTAButton>
 

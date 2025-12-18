@@ -152,7 +152,7 @@ export default function SummaryCTA() {
                     </p>
                 </div>
 
-                <CTAButton href="#comprar">
+                <CTAButton href="/oferta">
                     QUERO COMEÇAR MINHA TRANSFORMAÇÃO AGORA
                 </CTAButton>
             </div>

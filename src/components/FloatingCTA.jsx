@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function FloatingCTA({
-    href = '#comprar',
+    href = '/oferta',
     preText = '📦 Comece sua transformação hoje',
     ctaText = 'Garanta seu Kit com Frete Grátis',
 }) {
