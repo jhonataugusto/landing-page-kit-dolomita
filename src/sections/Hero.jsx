@@ -1,53 +1,23 @@
 import React, { useState } from 'react';
 import Section from '../components/Section';
 import CTAButton from '../components/CTAButton';
-import '../styles/Hero.css';
 
 export default function Hero() {
     const [isZoomOpen, setIsZoomOpen] = useState(false);
 
     return (
         <Section background="gradient-primary" className="fade-in">
-            <div style={{
-                textAlign: 'center',
-                color: 'var(--color-white)',
-                padding: 'var(--spacing-xl) 0'
-            }}>
-                <h1 style={{
-                    color: 'var(--color-white)',
-                    marginBottom: 'var(--spacing-md)',
-                    textShadow: '0 2px 10px rgba(0,0,0,0.1)',
-                    fontSize: 'clamp(1.75rem, 5vw, 2.5rem)',
-                    lineHeight: '1.2'
-                }}>
+            <div className="text-center text-white py-xl">
+                <h1 className="text-white mb-md text-[clamp(1.75rem,5vw,2.5rem)] leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
                     Pele Radiante em 30 Dias: O Segredo da Dolomita que 193 Mil Mulheres Já Descobriram
                 </h1>
 
-                <p style={{
-                    fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
-                    color: 'var(--color-lighter)',
-                    marginBottom: 'var(--spacing-md)',
-                    maxWidth: '900px',
-                    margin: '0 auto var(--spacing-md)',
-                    lineHeight: '1.6'
-                }}>
+                <p className="text-[clamp(1rem,2.5vw,1.25rem)] text-lighter mb-md max-w-3xl mx-auto leading-relaxed">
                     O ritual completo de 4 passos que elimina manchas, reduz linhas finas e devolve o brilho natural da sua pele — usando apenas ingredientes da floresta, sem químicos agressivos
                 </p>
 
                 {/* Social Proof Badge */}
-                <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 'var(--spacing-xs)',
-                    background: 'rgba(255,255,255,0.95)',
-                    color: 'var(--color-primary)',
-                    padding: 'var(--spacing-sm) var(--spacing-lg)',
-                    borderRadius: 'var(--radius-full)',
-                    marginBottom: 'var(--spacing-lg)',
-                    fontWeight: '600',
-                    fontSize: 'var(--font-size-sm)',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
-                }}>
+                <div className="inline-flex items-center gap-xs bg-white/95 text-primary px-lg py-sm rounded-full mb-lg font-semibold text-sm shadow-[0_4px_20px_rgba(0,0,0,0.15)]">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -56,35 +26,14 @@ export default function Hero() {
                     <span>Mais de 193 mil seguidores confiam na Beleza da Floresta</span>
                 </div>
 
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 'var(--spacing-md)',
-                    alignItems: 'center',
-                    marginBottom: 'var(--spacing-xl)'
-                }}>
-                    <div style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        padding: 'var(--spacing-sm) var(--spacing-md)',
-                        borderRadius: 'var(--radius-md)',
-                        backdropFilter: 'blur(10px)'
-                    }}>
+                <div className="flex flex-col gap-md items-center mb-xl">
+                    <div className="bg-white/10 px-md py-sm rounded-md backdrop-blur-md">
                         ✨ Pele renovada e radiante
                     </div>
-                    <div style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        padding: 'var(--spacing-sm) var(--spacing-md)',
-                        borderRadius: 'var(--radius-md)',
-                        backdropFilter: 'blur(10px)'
-                    }}>
+                    <div className="bg-white/10 px-md py-sm rounded-md backdrop-blur-md">
                         🌿 100% ingredientes naturais
                     </div>
-                    <div style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        padding: 'var(--spacing-sm) var(--spacing-md)',
-                        borderRadius: 'var(--radius-md)',
-                        backdropFilter: 'blur(10px)'
-                    }}>
+                    <div className="bg-white/10 px-md py-sm rounded-md backdrop-blur-md">
                         💚 Resultados em 30 dias
                     </div>
                 </div>
@@ -95,12 +44,7 @@ export default function Hero() {
 
                 {/* IMAGEM 1: Hero Product Shot */}
                 <div className="hero-image-shell">
-                    <div className="hero-image-frame" style={{
-                        fontSize: 'var(--font-size-sm)',
-                        color: 'rgba(255,255,255,0.6)',
-                        fontWeight: '600',
-                        textAlign: 'center'
-                    }}>
+                    <div className="hero-image-frame text-sm text-white/60 font-semibold text-center">
                         <img
                             className="hero-image"
                             src="/images/1.png"

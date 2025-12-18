@@ -2,69 +2,37 @@ import React, { memo } from 'react';
 
 const ProductCard = memo(function ProductCard({ number, name, emoji, benefits, usage, composition }) {
     return (
-        <div className="card" style={{ height: '100%' }}>
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 'var(--spacing-sm)',
-                marginBottom: 'var(--spacing-md)'
-            }}>
-                <div style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: 'var(--radius-full)',
-                    background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                    color: 'var(--color-white)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: '700',
-                    fontSize: 'var(--font-size-md)',
-                    flexShrink: 0
-                }}>
+        <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-base hover:-translate-y-1 h-full">
+            <div className="flex items-center gap-sm mb-md">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
                     {number}
                 </div>
                 <div>
-                    <h3 style={{ marginBottom: '0.25rem', fontSize: 'var(--font-size-md)' }}>
+                    <h3 className="mb-1 text-lg font-semibold text-primary">
                         {emoji} {name}
                     </h3>
                 </div>
             </div>
 
-            <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                <h4 style={{
-                    fontSize: 'var(--font-size-sm)',
-                    fontWeight: '600',
-                    color: 'var(--color-accent)',
-                    marginBottom: 'var(--spacing-xs)'
-                }}>
+            <div className="mb-md">
+                <h4 className="text-sm font-semibold text-accent mb-xs">
                     Benefícios:
                 </h4>
-                <p style={{ fontSize: 'var(--font-size-xs)' }}>{benefits}</p>
+                <p className="text-xs text-textLight leading-relaxed">{benefits}</p>
             </div>
 
-            <div style={{ marginBottom: 'var(--spacing-md)' }}>
-                <h4 style={{
-                    fontSize: 'var(--font-size-sm)',
-                    fontWeight: '600',
-                    color: 'var(--color-accent)',
-                    marginBottom: 'var(--spacing-xs)'
-                }}>
+            <div className="mb-md">
+                <h4 className="text-sm font-semibold text-accent mb-xs">
                     Como usar:
                 </h4>
-                <p style={{ fontSize: 'var(--font-size-xs)' }}>{usage}</p>
+                <p className="text-xs text-textLight leading-relaxed">{usage}</p>
             </div>
 
             <div>
-                <h4 style={{
-                    fontSize: 'var(--font-size-sm)',
-                    fontWeight: '600',
-                    color: 'var(--color-accent)',
-                    marginBottom: 'var(--spacing-xs)'
-                }}>
+                <h4 className="text-sm font-semibold text-accent mb-xs">
                     Composição:
                 </h4>
-                <p style={{ fontSize: 'var(--font-size-xs)', color: 'var(--color-text-light)' }}>
+                <p className="text-xs text-textLight leading-relaxed">
                     {composition}
                 </p>
             </div>

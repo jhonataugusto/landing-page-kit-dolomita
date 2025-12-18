@@ -6,21 +6,12 @@ import CTAButton from '../components/CTAButton';
 export default function TargetAudience() {
     return (
         <Section background="white">
-            <h2 className="text-center">Este Kit Foi Feito Para Você Se...</h2>
-            <p className="text-center" style={{
-                maxWidth: '700px',
-                margin: '0 auto var(--spacing-xl)',
-                fontSize: 'var(--font-size-md)'
-            }}>
+            <h2 className="text-center text-2xl md:text-3xl font-bold text-primary mb-md">Este Kit Foi Feito Para Você Se...</h2>
+            <p className="text-center max-w-2xl mx-auto mb-xl text-lg">
                 Você se identifica com alguma dessas situações?
             </p>
 
-            <div style={{
-                maxWidth: '800px',
-                margin: '0 auto',
-                display: 'grid',
-                gap: 'var(--spacing-md)'
-            }}>
+            <div className="max-w-3xl mx-auto grid gap-md">
                 <BenefitItem>
                     Você já gastou mais de R$ 500 em cremes e tratamentos sem ver resultados reais
                 </BenefitItem>
@@ -48,10 +39,7 @@ export default function TargetAudience() {
             </div>
 
             {/* CTA */}
-            <div style={{
-                marginTop: 'var(--spacing-2xl)',
-                textAlign: 'center'
-            }}>
+            <div className="mt-2xl text-center">
                 <CTAButton href="/oferta">
                     Sim, Este Kit É Para Mim
                 </CTAButton>

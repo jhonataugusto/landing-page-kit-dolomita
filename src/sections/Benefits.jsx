@@ -5,22 +5,12 @@ import BenefitItem from '../components/BenefitItem';
 export default function Benefits() {
     return (
         <Section background="light">
-            <h2 className="text-center">O Que Você Vai Conquistar em 30 Dias</h2>
-            <p className="text-center" style={{
-                maxWidth: '700px',
-                margin: '0 auto var(--spacing-xl)',
-                fontSize: 'var(--font-size-md)'
-            }}>
+            <h2 className="text-center text-2xl md:text-3xl font-bold text-primary mb-md">O Que Você Vai Conquistar em 30 Dias</h2>
+            <p className="text-center max-w-2xl mx-auto mb-xl text-lg">
                 Resultados reais que você pode ver, sentir e mostrar com orgulho
             </p>
 
-            <div style={{
-                maxWidth: '900px',
-                margin: '0 auto',
-                display: 'grid',
-                gap: 'var(--spacing-md)',
-                gridTemplateColumns: '1fr'
-            }}>
+            <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-md">
                 <BenefitItem>
                     Reviva a pele que você tinha aos 25: esfoliação profunda que remove anos de células mortas e impurezas acumuladas, revelando uma pele nova e radiante
                 </BenefitItem>
@@ -48,41 +38,16 @@ export default function Benefits() {
             </div>
 
             {/* IMAGEM 2: Before/After Transformation */}
-            <div style={{
-                marginTop: 'var(--spacing-2xl)',
-                maxWidth: '1000px',
-                margin: 'var(--spacing-2xl) auto 0',
-                borderRadius: 'var(--radius-lg)',
-                overflow: 'hidden',
-                boxShadow: 'var(--shadow-lg)',
-                background: 'var(--color-white)'
-            }}>
-                <div style={{
-                    width: '100%',
-                    aspectRatio: '21/9',
-                    background: 'linear-gradient(135deg, var(--color-light), var(--color-lighter))',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 'var(--font-size-sm)',
-                    color: 'var(--color-text-light)',
-                    fontWeight: '600',
-                    textAlign: 'center',
-                    padding: 'var(--spacing-md)'
-                }}>
+            <div className="mt-2xl max-w-5xl mx-auto rounded-lg overflow-hidden shadow-lg bg-white">
+                <div className="w-full aspect-[21/9] bg-gradient-to-br from-light to-lighter flex items-center justify-center text-sm text-textLight font-semibold text-center p-md">
                     <img
                         src="/images/2.png"
                         alt="Antes e Depois - Transformação da pele em 30 dias"
                         loading="lazy"
-                        style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            display: 'block'
-                        }}
+                        className="w-full h-full object-cover"
                         onError={(e) => {
                             e.target.style.display = 'none';
-                            e.target.parentElement.innerHTML = '✨ IMAGEM 2: Antes e Depois - Transformação visível em 30 dias';
+                            e.target.parentElement.innerHTML = '📸 IMAGEM 2: Antes e Depois - Transformação em 30 dias';
                         }}
                     />
                 </div>

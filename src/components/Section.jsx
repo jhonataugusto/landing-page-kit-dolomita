@@ -1,22 +1,19 @@
 import React from 'react';
 
 export default function Section({ children, className = '', background = 'white', id }) {
-    const bgClass = background === 'gradient-primary' ? 'gradient-primary' :
-        background === 'gradient-secondary' ? 'gradient-secondary' :
-            background === 'light' ? '' : '';
-
-    const sectionStyle = background === 'light' ? { backgroundColor: 'var(--color-light)' } : {};
+    const bgClasses = {
+        'white': 'bg-white',
+        'light': 'bg-light',
+        'gradient-primary': 'bg-gradient-to-br from-primary to-accent',
+        'gradient-secondary': 'bg-gradient-to-br from-secondary to-highlight',
+    };
 
     return (
         <section
             id={id}
-            className={`${bgClass} ${className}`}
-            style={{
-                padding: 'var(--spacing-xl) 0',
-                ...sectionStyle
-            }}
+            className={`py-xl ${bgClasses[background] || 'bg-white'} ${className}`}
         >
-            <div className="container">
+            <div className="container mx-auto px-4 md:px-6">
                 {children}
             </div>
         </section>
