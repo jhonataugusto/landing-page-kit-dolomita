@@ -73,6 +73,7 @@ export default function Benefits() {
                     <img
                         src="/images/2.png"
                         alt="Antes e Depois - Transformação da pele em 30 dias"
+                        loading="lazy"
                         style={{
                             width: '100%',
                             height: '100%',

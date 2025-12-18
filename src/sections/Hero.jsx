@@ -106,6 +106,8 @@ export default function Hero() {
                             src="/images/1.png"
                             alt="O Ritual Completo com 4 Produtos Naturais da Floresta"
                             onClick={() => setIsZoomOpen(true)}
+                            loading="eager"
+                            fetchPriority="high"
                             onError={(e) => {
                                 e.target.style.display = 'none';
                                 e.target.parentElement.innerHTML = '📦 IMAGEM 1: Kit completo em ambiente luxuoso';

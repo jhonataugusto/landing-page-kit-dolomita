@@ -18,6 +18,7 @@ import FloatingCTA from './components/FloatingCTA';
 function App() {
     return (
         <div className="App">
+            <main>
             <Hero />
             <WhatIsKit />
             <Benefits />
@@ -43,6 +44,7 @@ function App() {
             <SummaryCTA />
             <FinalCTA />
             <Disclaimer />
+            </main>
             <FloatingCTA href="#comprar" />
         </div>
     );

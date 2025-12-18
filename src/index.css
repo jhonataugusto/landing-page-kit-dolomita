@@ -66,6 +66,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Otimização de fontes */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
 /* Floating CTA (mobile) */
 .floating-cta {
   position: fixed;
@@ -85,6 +91,7 @@ body {
   width: 100%;
   text-decoration: none;
   padding: 0.9rem 1rem;
+  min-height: 44px; /* Tamanho mínimo de toque acessível */
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   color: var(--color-white);
