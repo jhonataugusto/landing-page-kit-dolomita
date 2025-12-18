@@ -1,0 +1,21 @@
+/* Final CTA - Offers Responsive */
+.offers-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    margin: 0 auto var(--spacing-2xl);
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .offers-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
