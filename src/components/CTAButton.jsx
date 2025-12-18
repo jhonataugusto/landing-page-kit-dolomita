@@ -33,11 +33,22 @@ const CTAButton = memo(function CTAButton({ children, onClick, href }) {
         e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
     }, []);
 
+    // Se tiver href, usar <a> tag normal com navegação nativa do navegador
+    // Não usar React Router Link - usar navegação HTML padrão
+    const handleClick = useCallback((e) => {
+        // Se tiver onClick customizado, executar mas não prevenir navegação padrão
+        if (onClick) {
+            onClick(e);
+        }
+        // Se tiver href, deixar o navegador fazer a navegação normalmente
+        // Não prevenir comportamento padrão
+    }, [onClick]);
+
     return (
         <Component
             className="pulse"
             style={buttonStyle}
-            onClick={onClick}
+            onClick={handleClick}
             href={href}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

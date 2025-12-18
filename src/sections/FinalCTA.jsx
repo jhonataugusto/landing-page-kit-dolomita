@@ -82,11 +82,11 @@ export default function FinalCTA() {
                             opacity: 0.95
                         }}>
                             Para quem quer o tratamento completo e resultados visíveis em 30 dias
-                        </p>
+                </p>
 
-                        <div style={{
-                            background: 'rgba(255,255,255,0.15)',
-                            padding: 'var(--spacing-lg)',
+                <div style={{
+                    background: 'rgba(255,255,255,0.15)',
+                    padding: 'var(--spacing-lg)',
                             borderRadius: 'var(--radius-md)',
                             marginBottom: 'var(--spacing-lg)',
                             backdropFilter: 'blur(10px)'
@@ -120,9 +120,9 @@ export default function FinalCTA() {
                             padding: 'var(--spacing-lg)',
                             borderRadius: 'var(--radius-md)',
                             marginBottom: 'var(--spacing-lg)',
-                            backdropFilter: 'blur(10px)'
-                        }}>
-                            <div style={{
+                    backdropFilter: 'blur(10px)'
+                }}>
+                    <div style={{
                                 fontSize: 'var(--font-size-sm)',
                                 fontWeight: '600',
                                 marginBottom: 'var(--spacing-md)',
@@ -130,10 +130,10 @@ export default function FinalCTA() {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 gap: 'var(--spacing-sm)'
-                            }}>
+                    }}>
                                 <span>🎁</span>
                                 <span>Inclui:</span>
-                            </div>
+                    </div>
                             <div style={{
                                 textAlign: 'left',
                                 fontSize: 'var(--font-size-sm)',
@@ -146,15 +146,15 @@ export default function FinalCTA() {
                         <div style={{
                             marginBottom: 'var(--spacing-lg)'
                         }}>
-                            <div style={{
-                                fontSize: 'var(--font-size-3xl)',
-                                fontWeight: '800',
-                                marginBottom: 'var(--spacing-xs)'
-                            }}>
+                    <div style={{
+                        fontSize: 'var(--font-size-3xl)',
+                        fontWeight: '800',
+                        marginBottom: 'var(--spacing-xs)'
+                    }}>
                                 R$ 459,90
-                            </div>
-                            <div style={{
-                                fontSize: 'var(--font-size-sm)',
+                    </div>
+                    <div style={{
+                        fontSize: 'var(--font-size-sm)',
                                 opacity: 0.9
                             }}>
                                 ou 3x de R$ 153,30 sem juros
@@ -239,10 +239,10 @@ export default function FinalCTA() {
                             }}>
                                 ✓ Sabonete Facial<br/>
                                 ✓ Máscara Detox
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
-                        <div style={{
+                <div style={{
                             background: 'rgba(0, 49, 46, 0.05)',
                             padding: 'var(--spacing-lg)',
                             borderRadius: 'var(--radius-md)',
@@ -253,7 +253,7 @@ export default function FinalCTA() {
                                 fontWeight: '600',
                                 marginBottom: 'var(--spacing-md)',
                                 color: 'var(--color-primary)',
-                                display: 'flex',
+                    display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 gap: 'var(--spacing-sm)'
@@ -266,7 +266,7 @@ export default function FinalCTA() {
                                 fontSize: 'var(--font-size-sm)',
                                 lineHeight: '2',
                                 color: 'var(--color-text-light)'
-                            }}>
+                }}>
                                 ✓ Frete Grátis
                             </div>
                         </div>
@@ -290,8 +290,8 @@ export default function FinalCTA() {
                             </div>
                         </div>
 
-                        <p style={{
-                            fontSize: 'var(--font-size-xs)',
+                    <p style={{
+                        fontSize: 'var(--font-size-xs)',
                             color: 'var(--color-text-light)',
                             marginBottom: 'var(--spacing-lg)',
                             fontStyle: 'italic'
