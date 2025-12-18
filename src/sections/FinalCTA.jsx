@@ -169,7 +169,7 @@ export default function FinalCTA() {
                             🔐 Estoque limitado | Produção 100% natural
                         </div>
 
-                        <CTAButton href="https://checkout.example.com/ritual-completo">
+                        <CTAButton href="https://www.belezadafloresta.com.br/produtos/kit-completo-de-dolomita/">
                             QUERO O RITUAL COMPLETO
                         </CTAButton>
                         <p style={{
@@ -299,7 +299,7 @@ export default function FinalCTA() {
                             ✨ Ideal para quem quer testar e começar sua transformação com praticidade
                         </p>
 
-                        <CTAButton href="https://checkout.example.com/ritual-essencial">
+                        <CTAButton href="https://www.belezadafloresta.com.br/produtos/kit-basico-de-dolomita/">
                             QUERO COMEÇAR COM O MINI KIT
                         </CTAButton>
                         <p style={{
