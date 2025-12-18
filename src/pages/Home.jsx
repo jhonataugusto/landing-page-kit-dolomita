@@ -15,7 +15,7 @@ const Objections = lazy(() => import('../sections/Objections'));
 const TrustBadges = lazy(() => import('../sections/TrustBadges'));
 const SocialProof = lazy(() => import('../sections/SocialProof'));
 const SummaryCTA = lazy(() => import('../sections/SummaryCTA'));
-const FinalCTA = lazy(() => import('../sections/FinalCTA'));
+// FinalCTA removido da Home - agora só existe na página /oferta
 const Disclaimer = lazy(() => import('../sections/Disclaimer'));
 
 export default function Home() {
@@ -61,9 +61,7 @@ export default function Home() {
             <LazySection>
                 <SummaryCTA />
             </LazySection>
-            <LazySection>
-                <FinalCTA />
-            </LazySection>
+            {/* FinalCTA removido - agora só existe na página /oferta */}
             <LazySection>
                 <Disclaimer />
             </LazySection>
