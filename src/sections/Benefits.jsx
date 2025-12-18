@@ -12,28 +12,28 @@ export default function Benefits() {
 
             <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-md">
                 <BenefitItem>
-                    Reviva a pele que você tinha aos 25: esfoliação profunda que remove anos de células mortas e impurezas acumuladas, revelando uma pele nova e radiante
+                    <strong>Reviva a pele que você tinha aos 25:</strong> esfoliação profunda que remove anos de células mortas e impurezas acumuladas, revelando uma pele nova e radiante
                 </BenefitItem>
                 <BenefitItem>
-                    Hidratação que dura o dia todo: pele nutrida, macia e protegida, sem aquela sensação de ressecamento que te fazia usar creme a cada 2 horas
+                    <strong>Hidratação que dura o dia todo:</strong> pele nutrida, macia e protegida, sem aquela sensação de ressecamento que te fazia usar creme a cada 2 horas
                 </BenefitItem>
                 <BenefitItem>
-                    Diga adeus às manchas: redução visível de manchas, linhas finas e sinais de envelhecimento em apenas 30 dias de uso
+                    <strong>Diga adeus às manchas:</strong> redução visível de manchas, linhas finas e sinais de envelhecimento em apenas 30 dias de uso
                 </BenefitItem>
                 <BenefitItem>
-                    Pele firme e elástica: recupere a elasticidade perdida e veja sua pele com aparência mais jovem e saudável
+                    <strong>Pele firme e elástica:</strong> recupere a elasticidade perdida e veja sua pele com aparência mais jovem e saudável
                 </BenefitItem>
                 <BenefitItem>
-                    Equilíbrio perfeito: pH natural restaurado, sem irritações, sem ressecamento, sem oleosidade excessiva
+                    <strong>Equilíbrio perfeito:</strong> pH natural restaurado, sem irritações, sem ressecamento, sem oleosidade excessiva
                 </BenefitItem>
                 <BenefitItem>
-                    Textura de seda: pele suave e uniforme, sem aquelas irregularidades que te incomodavam ao passar a mão
+                    <strong>Textura de seda:</strong> pele suave e uniforme, sem aquelas irregularidades que te incomodavam ao passar a mão
                 </BenefitItem>
                 <BenefitItem>
-                    Brilho natural de volta: luminosidade que vem de dentro, não de maquiagem — aquele glow que você pensava que tinha perdido para sempre
+                    <strong>Brilho natural de volta:</strong> luminosidade que vem de dentro, não de maquiagem — aquele glow que você pensava que tinha perdido para sempre
                 </BenefitItem>
                 <BenefitItem>
-                    Proteção invisível: barreira natural fortalecida contra poluição, sol e outros agressores do dia a dia
+                    <strong>Proteção invisível:</strong> barreira natural fortalecida contra poluição, sol e outros agressores do dia a dia
                 </BenefitItem>
             </div>
 
