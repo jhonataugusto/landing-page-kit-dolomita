@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 
-export default function CTAButton({ children, onClick, href }) {
+const CTAButton = memo(function CTAButton({ children, onClick, href }) {
     const buttonStyle = {
         display: 'inline-flex',
         alignItems: 'center',
@@ -23,22 +23,28 @@ export default function CTAButton({ children, onClick, href }) {
 
     const Component = href ? 'a' : 'button';
 
+    const handleMouseEnter = useCallback((e) => {
+        e.currentTarget.style.transform = 'translateY(-4px) scale(1.05)';
+        e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 49, 46, 0.3)';
+    }, []);
+
+    const handleMouseLeave = useCallback((e) => {
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+    }, []);
+
     return (
         <Component
             className="pulse"
             style={buttonStyle}
             onClick={onClick}
             href={href}
-            onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px) scale(1.05)';
-                e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 49, 46, 0.3)';
-            }}
-            onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
-            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             {children}
         </Component>
     );
-}
+});
+
+export default CTAButton;

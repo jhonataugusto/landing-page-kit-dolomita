@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-export default function ProductCard({ number, name, emoji, benefits, usage, composition }) {
+const ProductCard = memo(function ProductCard({ number, name, emoji, benefits, usage, composition }) {
     return (
         <div className="card" style={{ height: '100%' }}>
             <div style={{
@@ -70,4 +70,6 @@ export default function ProductCard({ number, name, emoji, benefits, usage, comp
             </div>
         </div>
     );
-}
+});
+
+export default ProductCard;

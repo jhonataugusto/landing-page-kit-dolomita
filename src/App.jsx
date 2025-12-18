@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Hero from './sections/Hero';
 import WhatIsKit from './sections/WhatIsKit';
 import Benefits from './sections/Benefits';
-import WhyItWorks from './sections/WhyItWorks';
-import BrandStory from './sections/BrandStory';
-import CompleteRitual from './sections/CompleteRitual';
-import TargetAudience from './sections/TargetAudience';
-import Objections from './sections/Objections';
-import TrustBadges from './sections/TrustBadges';
-import SocialProof from './sections/SocialProof';
-import SummaryCTA from './sections/SummaryCTA';
-import FinalCTA from './sections/FinalCTA';
-import Disclaimer from './sections/Disclaimer';
 import MiniCTA from './components/MiniCTA';
 import FloatingCTA from './components/FloatingCTA';
+import { LazySection } from './components/LazySection';
+
+// Lazy load de componentes abaixo da dobra para reduzir JavaScript inicial
+const WhyItWorks = lazy(() => import('./sections/WhyItWorks'));
+const BrandStory = lazy(() => import('./sections/BrandStory'));
+const CompleteRitual = lazy(() => import('./sections/CompleteRitual'));
+const TargetAudience = lazy(() => import('./sections/TargetAudience'));
+const Objections = lazy(() => import('./sections/Objections'));
+const TrustBadges = lazy(() => import('./sections/TrustBadges'));
+const SocialProof = lazy(() => import('./sections/SocialProof'));
+const SummaryCTA = lazy(() => import('./sections/SummaryCTA'));
+const FinalCTA = lazy(() => import('./sections/FinalCTA'));
+const Disclaimer = lazy(() => import('./sections/Disclaimer'));
 
 function App() {
     return (
@@ -22,28 +25,48 @@ function App() {
             <Hero />
             <WhatIsKit />
             <Benefits />
-            <WhyItWorks />
+            <LazySection>
+                <WhyItWorks />
+            </LazySection>
             <MiniCTA 
                 text="Está pronta para entender por que esse mineral mudou a vida de milhares de mulheres?"
                 emoji="👉"
             />
-            <BrandStory />
-            <CompleteRitual />
+            <LazySection>
+                <BrandStory />
+            </LazySection>
+            <LazySection>
+                <CompleteRitual />
+            </LazySection>
             <MiniCTA 
                 text="Agora que você viu o ritual completo, descubra se ele é perfeito para você"
                 emoji="💚"
             />
-            <TargetAudience />
-            <Objections />
-            <TrustBadges />
+            <LazySection>
+                <TargetAudience />
+            </LazySection>
+            <LazySection>
+                <Objections />
+            </LazySection>
+            <LazySection>
+                <TrustBadges />
+            </LazySection>
             <MiniCTA 
                 text="Veja depoimentos reais de quem já transformou a pele com o Kit de Dolomita"
                 emoji="✨"
             />
-            <SocialProof />
-            <SummaryCTA />
-            <FinalCTA />
-            <Disclaimer />
+            <LazySection>
+                <SocialProof />
+            </LazySection>
+            <LazySection>
+                <SummaryCTA />
+            </LazySection>
+            <LazySection>
+                <FinalCTA />
+            </LazySection>
+            <LazySection>
+                <Disclaimer />
+            </LazySection>
             </main>
             <FloatingCTA href="#comprar" />
         </div>

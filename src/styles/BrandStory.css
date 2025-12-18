@@ -1,10 +1,21 @@
 /* Brand Story Videos - Responsive */
 .mobile-video {
     display: block !important;
+    contain: layout;
 }
 
 .desktop-video {
     display: block !important;
+    contain: layout;
+}
+
+/* Otimização de iframes para reduzir reflows */
+.mobile-video iframe,
+.desktop-video iframe {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: layout;
 }
 
 /* Mobile - Mostra ambos os vídeos empilhados */

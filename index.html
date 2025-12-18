@@ -12,13 +12,13 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <!-- Google Fonts - Otimizado -->
+    <!-- Google Fonts - Resource hints apenas, carregamento adiado -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-        rel="stylesheet">
     
-    <!-- Preload para imagem crítica -->
+    <!-- Preload para recursos críticos -->
     <link rel="preload" as="image" href="/images/1.png" />
 
     <title>Kit de Dolomita - Transforme sua Pele Naturalmente</title>
@@ -27,6 +27,18 @@
 <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Carregar fontes após renderização inicial (não bloqueia) -->
+    <script>
+        // Carregar fontes de forma assíncrona após renderização
+        (function() {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=optional';
+            link.media = 'print';
+            link.onload = function() { this.media = 'all'; };
+            document.head.appendChild(link);
+        })();
+    </script>
 </body>
 
 </html>

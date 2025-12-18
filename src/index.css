@@ -58,7 +58,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
   font-size: var(--font-size-sm);
   line-height: 1.6;
   color: var(--color-text);
@@ -66,10 +66,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Otimização de fontes */
+/* Otimização de fontes - fallback primeiro para renderização imediata */
 @font-face {
   font-family: 'Inter';
-  font-display: swap;
+  font-display: optional;
 }
 
 /* Floating CTA (mobile) */

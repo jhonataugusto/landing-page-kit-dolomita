@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-export default function MiniCTA({ text, emoji = '👉' }) {
+const MiniCTA = memo(function MiniCTA({ text, emoji = '👉' }) {
     return (
         <div style={{
             padding: 'var(--spacing-xl) var(--spacing-md)',
@@ -34,5 +34,7 @@ export default function MiniCTA({ text, emoji = '👉' }) {
             </div>
         </div>
     );
-}
+});
+
+export default MiniCTA;
 

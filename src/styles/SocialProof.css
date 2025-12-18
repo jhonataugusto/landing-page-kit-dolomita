@@ -130,6 +130,10 @@
     height: 100%;
     border: none;
     display: block;
+    contain: layout;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .reel-play-overlay {
@@ -248,27 +252,46 @@
 .carousel-dots {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm); /* Espaçamento mínimo de 1rem (16px) entre dots */
     margin-top: var(--spacing-xl);
+    align-items: center;
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
+    /* Área de toque mínima de 44x44px (padrão de acessibilidade WCAG) */
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: var(--color-secondary);
+    background: transparent;
     border: none;
     cursor: pointer;
     transition: all var(--transition-base);
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-.dot:hover {
+/* Visual do dot (menor que a área de toque) */
+.dot::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    transition: all var(--transition-base);
+}
+
+.dot:hover::after {
     background: var(--color-accent);
     transform: scale(1.2);
 }
 
-.dot.active {
+.dot.active::after {
     background: var(--color-primary);
     width: 32px;
     border-radius: var(--radius-full);

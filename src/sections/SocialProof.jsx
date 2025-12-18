@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import '../styles/SocialProof.css';
 
 const SocialProof = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const [loadedVideos, setLoadedVideos] = useState(new Set()); // Não carrega nenhum iframe inicialmente
+    const [playingVideos, setPlayingVideos] = useState(new Set()); // Vídeos que o usuário quer assistir
 
-    // Função para extrair ID do YouTube
-    const getYouTubeId = (url) => {
+    // Função para extrair ID do YouTube - memoizada
+    const getYouTubeId = useCallback((url) => {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url.match(regExp);
         return (match && match[2].length === 11) ? match[2] : null;
-    };
+    }, []);
 
-    // Dados dos vídeos de depoimentos reais do YouTube
-    const videos = [
+    // Dados dos vídeos de depoimentos reais do YouTube - memoizado
+    const videos = useMemo(() => [
         {
             id: 1,
             youtubeUrl: "https://youtu.be/ICImfJGG75I",
@@ -77,9 +79,33 @@ const SocialProof = () => {
             title: "Depoimento Real - Cliente Satisfeita",
             description: "Veja o que nossas clientes estão dizendo"
         }
-    ];
+    ], []);
 
-    // Auto-play do carrossel - mais lento e para quando interage
+    // Função para obter thumbnail do YouTube - memoizada
+    const getYouTubeThumbnail = useCallback((videoId, quality = 'hqdefault') => {
+        return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
+    }, []);
+
+    // Carregar iframe apenas quando usuário interage - memoizada
+    // Usa requestIdleCallback para não bloquear thread principal
+    const loadVideo = useCallback((videoIndex) => {
+        const loadIframe = () => {
+            setLoadedVideos(prev => {
+                if (prev.has(videoIndex)) return prev;
+                return new Set([...prev, videoIndex]);
+            });
+        };
+        
+        // Adiar criação do iframe para não bloquear thread principal
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadIframe, { timeout: 100 });
+        } else {
+            // Fallback para navegadores sem requestIdleCallback
+            setTimeout(loadIframe, 0);
+        }
+    }, []);
+
+    // Auto-play do carrossel - otimizado para reduzir trabalho da thread principal
     useEffect(() => {
         if (!isAutoPlaying) return;
 
@@ -87,37 +113,44 @@ const SocialProof = () => {
             setCurrentIndex((prevIndex) =>
                 prevIndex === videos.length - 1 ? 0 : prevIndex + 1
             );
-        }, 15000); // Muda a cada 15 segundos (mais tempo para assistir)
+        }, 15000); // Muda a cada 15 segundos
 
         return () => clearInterval(interval);
     }, [isAutoPlaying, videos.length]);
 
-    const goToSlide = (index) => {
-        setCurrentIndex(index);
-        setIsAutoPlaying(false);
-    };
+    const goToSlide = useCallback((index) => {
+        // Usar requestAnimationFrame para evitar reflows forçados
+        requestAnimationFrame(() => {
+            setCurrentIndex(index);
+            setIsAutoPlaying(false);
+        });
+    }, []);
 
-    const nextSlide = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === videos.length - 1 ? 0 : prevIndex + 1
-        );
-        setIsAutoPlaying(false);
-    };
+    const nextSlide = useCallback(() => {
+        requestAnimationFrame(() => {
+            setCurrentIndex((prevIndex) =>
+                prevIndex === videos.length - 1 ? 0 : prevIndex + 1
+            );
+            setIsAutoPlaying(false);
+        });
+    }, [videos.length]);
 
-    const prevSlide = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? videos.length - 1 : prevIndex - 1
-        );
-        setIsAutoPlaying(false);
-    };
+    const prevSlide = useCallback(() => {
+        requestAnimationFrame(() => {
+            setCurrentIndex((prevIndex) =>
+                prevIndex === 0 ? videos.length - 1 : prevIndex - 1
+            );
+            setIsAutoPlaying(false);
+        });
+    }, [videos.length]);
 
-    // Para o auto-play quando o usuário interage com o vídeo
-    const handleVideoInteraction = () => {
+    // Para o auto-play quando o usuário interage com o vídeo - memoizada
+    const handleVideoInteraction = useCallback(() => {
         setIsAutoPlaying(false);
-    };
+    }, []);
 
-    // Calcula quais vídeos mostrar (atual + 2 adjacentes no mobile, mais no desktop)
-    const getVisibleVideos = () => {
+    // Calcula quais vídeos mostrar (atual + 2 adjacentes no mobile, mais no desktop) - memoizado
+    const visibleVideos = useMemo(() => {
         const visible = [];
         const totalVideos = videos.length;
 
@@ -130,7 +163,7 @@ const SocialProof = () => {
         }
 
         return visible;
-    };
+    }, [currentIndex, videos]);
 
     return (
         <section className="social-proof">
@@ -192,7 +225,7 @@ const SocialProof = () => {
                         className="carousel-track"
                         onMouseEnter={handleVideoInteraction}
                     >
-                        {getVisibleVideos().map((video, idx) => (
+                        {visibleVideos.map((video, idx) => (
                             <div
                                 key={`${video.id}-${idx}`}
                                 className={`carousel-item ${video.position === 0 ? 'active' : ''} ${video.position < 0 ? 'prev' : ''} ${video.position > 0 ? 'next' : ''}`}
@@ -201,27 +234,80 @@ const SocialProof = () => {
                                 <div className="reel-card">
                                     <div 
                                         className="reel-thumbnail" 
-                                        style={{ position: 'relative', paddingBottom: '177.78%', height: 0, overflow: 'hidden', borderRadius: 'var(--radius-md)' }}
-                                        onMouseEnter={handleVideoInteraction}
-                                        onClick={handleVideoInteraction}
+                                        style={{ position: 'relative', paddingBottom: '177.78%', height: 0, overflow: 'hidden', borderRadius: 'var(--radius-md)', cursor: 'pointer' }}
+                                        onClick={() => {
+                                            const videoIndex = videos.findIndex(v => v.id === video.id);
+                                            setPlayingVideos(prev => new Set([...prev, videoIndex]));
+                                            loadVideo(videoIndex);
+                                        }}
                                     >
-                                        <iframe
-                                            width="100%"
-                                            height="100%"
-                                            src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1&enablejsapi=0`}
-                                            title={video.title}
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            style={{
-                                                position: 'absolute',
-                                                top: 0,
-                                                left: 0,
-                                                width: '100%',
-                                                height: '100%'
-                                            }}
-                                            onMouseEnter={handleVideoInteraction}
-                                        ></iframe>
+                                        {loadedVideos.has(videos.findIndex(v => v.id === video.id)) ? (
+                                            <iframe
+                                                width="100%"
+                                                height="100%"
+                                                src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?rel=0&modestbranding=1&enablejsapi=0&autoplay=1&controls=1&playsinline=1&origin=${typeof window !== 'undefined' ? window.location.origin : ''}`}
+                                                title={video.title}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                loading="lazy"
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: 0,
+                                                    left: 0,
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    willChange: 'transform',
+                                                    transform: 'translateZ(0)'
+                                                }}
+                                            ></iframe>
+                                        ) : (
+                                            <>
+                                                <img
+                                                    src={getYouTubeThumbnail(video.youtubeId)}
+                                                    alt={video.title}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        top: 0,
+                                                        left: 0,
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover'
+                                                    }}
+                                                    loading="lazy"
+                                                />
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    top: 0,
+                                                    left: 0,
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    background: 'rgba(0, 0, 0, 0.3)',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    transition: 'background 0.3s'
+                                                }}
+                                                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.5)'}
+                                                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.3)'}
+                                                >
+                                                    <div style={{
+                                                        width: '64px',
+                                                        height: '64px',
+                                                        background: 'rgba(255, 255, 255, 0.9)',
+                                                        borderRadius: '50%',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+                                                    }}>
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)" style={{ marginLeft: '4px' }}>
+                                                            <path d="M8 5v14l11-7z"/>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                     <div className="reel-info">
                                         <h3>{video.title}</h3>
